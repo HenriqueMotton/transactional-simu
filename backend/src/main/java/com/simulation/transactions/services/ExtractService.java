@@ -23,15 +23,10 @@ public class ExtractService {
     private AccountRepository accountRepository;
 
     public List<ExtractModel> getExtractsByAccountNumber(String numAccount) {
-        AccountModel account = accountRepository.findByNumAccount(numAccount)
-                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
-
-        List<ExtractModel> extracts = extractRepository.findByAccount(account);
-
+        List<ExtractModel> extracts = extractRepository.listExtractByNumAccount(numAccount);
         if (extracts.isEmpty()) {
             throw new RuntimeException("Nenhum extrato encontrado para a conta " + numAccount);
         }
-
         return extracts;
     }
 }

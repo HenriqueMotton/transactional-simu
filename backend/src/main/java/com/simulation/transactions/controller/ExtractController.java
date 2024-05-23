@@ -5,6 +5,7 @@ import com.simulation.transactions.dtos.ExtractRecordDto;
 import com.simulation.transactions.models.ExtractModel;
 import com.simulation.transactions.services.ClientService;
 import com.simulation.transactions.services.ExtractService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("extracts")
+@RequiredArgsConstructor
 public class ExtractController {
-
-    @Autowired
-    private ExtractService extractService;
+    private final ExtractService extractService;
 
     @GetMapping("/{numAccount}")
     public ResponseEntity<?> getExtractsByAccountNumber(@PathVariable String numAccount) {

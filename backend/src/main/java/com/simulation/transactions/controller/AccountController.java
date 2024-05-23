@@ -5,7 +5,7 @@ import com.simulation.transactions.enums.TransactionType;
 import com.simulation.transactions.models.AccountModel;
 import com.simulation.transactions.services.AccountService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,9 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/accounts")
+@RequiredArgsConstructor
 public class AccountController {
-    @Autowired
-    private AccountService accountService;
-
+    private final AccountService accountService;
 
     @GetMapping("/{numAccount}")
     public ResponseEntity<?> getAccountByNum(@PathVariable String numAccount){
