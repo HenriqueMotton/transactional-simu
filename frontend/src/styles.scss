@@ -1,0 +1,58 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+html{
+  height: 100%;
+  background-color: var(--surface-100);
+}
+
+body{
+  height: 100%;
+  margin: auto;
+  padding: auto;
+  font-family: Inter, sans-serif;
+}
+
+.card-table {
+  background: #FEFEFE;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  border: var(--surface-border) 1px solid;
+}
+
+.container-app{
+  height: 100%;
+  padding: 65px 75px 65px 75px;
+  background-color: var(--surface-100);
+}
+
+.titulo-principal{
+  color: var(--bluegray-900);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.subtitulo{
+  color: var(--surface-600);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.cursorPointer{
+  cursor: pointer;
+}
+
+.required {
+  color: rgb(228, 59, 59); 
+  margin-left: 3px;
+}
+
+.disabled-color{
+  color: #97a1ad;
+}
+
+.content-step{
+  padding: 30px 35px 30px 35px;
+}

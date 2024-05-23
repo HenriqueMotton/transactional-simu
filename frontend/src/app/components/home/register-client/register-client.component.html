@@ -1,0 +1,60 @@
+@if(requestStatus){
+  <div class="flex align-items-center">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
+}@else {
+  <form [formGroup]="formGroup" class="flex flex-column gap-3 mt-3">
+    <div class="col-12">
+      <p-floatLabel>
+        <input id="name" type="text" pInputText formControlName="name"  />
+        <label for="name">Nome</label>
+      </p-floatLabel>
+      @if(formGroup.get('name')!.invalid && formGroup.get('name')!.touched){
+        <small class="p-error">
+          Campo obrigatório e deve ter no mínimo 3 caracteres.
+        </small>
+      }
+    </div>
+    <div class="col-12">
+      <p-floatLabel>
+        <input id="age" type="text" pInputText formControlName="age" (keypress)="onKeyPressAge($event)"/>
+        <label for="age">Idade</label>
+      </p-floatLabel>
+      @if(formGroup.get('age')!.invalid && formGroup.get('age')!.touched){
+        <small class="p-error">
+          Campo obrigatório, com minimo de 18 anos e máximo de 120.
+        </small>
+      }
+    </div>
+    <div class="col-12">
+      <p-floatLabel>
+        <input id="email" type="text" pInputText formControlName="email"  />
+        <label for="email">E-mail</label>
+      </p-floatLabel>
+      @if(formGroup.get('email')!.invalid && formGroup.get('email')!.touched){
+        <small class="p-error">
+          Campo obrigatório e deve seguir o formato email padrão.
+        </small>
+      }
+    </div>
+    <div class="col-12">
+      <p-floatLabel>
+        <input id="numAccount" type="text" pInputText formControlName="numAccount" (keypress)="onKeyPressAccount($event)"/>
+        <label for="numAccount">Número da conta</label>
+      </p-floatLabel>
+      @if(formGroup.get('numAccount')!.invalid && formGroup.get('numAccount')!.touched){
+        <small class="p-error">
+          Campo obrigatório e deve conter 14 números.
+        </small>
+      }
+    </div>
+    <div class="col-12 flex">
+      <div class="col-5 pl-0">
+        <p-button label="Salvar" type="submit" [outlined]="true" (click)="saveCliente()"></p-button>
+      </div>
+      <div class="col-5 pl-0">
+        <p-button label="Cancelar" (click)="cancelRegister()"></p-button>
+      </div>
+    </div>
+  </form>
+}

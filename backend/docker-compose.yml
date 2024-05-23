@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_container22
+    environment:
+      POSTGRES_USER: park
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: simu-bank
+    ports:
+      - "5412:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,0 +1,106 @@
+<div class="container-app">
+  <div class="flex flex-column">
+    <div class="col-12">
+      <span class="titulo-principal">Simulador de transações financeiras 1.0</span>
+    </div>
+    <div class="col-12 pt-4">
+      <p-table
+        [value]="filteredClients"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [tableStyle]="{ 'min-width': '30rem' }"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <div class="col-2 p-0">
+              <span class="titulo-principal">Clientes</span>
+            </div>
+            <div class="col-7 p-0">
+              <input 
+                pInputText 
+                type="text" 
+                placeholder="Nome ou e-mail" 
+                (input)="filterData($event)"
+              />
+            </div>
+            <div class="flex col-3 p-0 justify-content-end">
+              <p-button label="Cliente" pTooltip="Adicionar Cliente" icon="pi pi-plus" [outlined]="true" (click)="statusModalClient(true)"></p-button>
+              <p-dialog 
+                header="Cadastro de cliente" 
+                [(visible)]="visibleRegisterClient" 
+                [modal]="true" 
+                [draggable]="false" 
+                [resizable]="false"
+                [style]="{ width: '25rem' }" 
+                [closable]="false"
+              >
+                <app-register-client (statusModal)="registerFinish($event)"></app-register-client>
+              </p-dialog>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            @for (header of headersTable; track header.title){
+              <th style="width: 25%;">
+                <div class="flex align-items-center">
+                  {{ header.title }}
+                </div>
+              </th>
+            }
+          </tr>
+        </ng-template>
+          <ng-template pTemplate="body" let-client>
+            <tr>
+              <td>{{ client.name }}</td>
+              <td>{{ client.age }}</td>
+              <td>{{ client.email }}</td>
+              <td>{{ client.numAccount }}</td>
+              <td>
+                <div class="flex">
+                  <input
+                    pInputText 
+                    type="text" 
+                    placeholder="Valor"
+                    style="width: 70px;"
+                    [(ngModel)]="client.valueTransactional" 
+                  />
+                  <div class="pl-3">
+                    <i 
+                      class="pi pi-dollar cursorPointer pb-3" 
+                      pTooltip="Debitar" 
+                      style="font-size: 25px; color: rgb(93, 194, 101);" 
+                      (click)="debitValueAccount(client.valueTransactional, client.numAccount, 'DEBIT')"></i>
+                    <i 
+                      class="pi pi-minus-circle cursorPointer" 
+                      pTooltip="Creditar" 
+                      style="font-size: 25px; color: rgb(194, 93, 93);" 
+                      (click)="debitValueAccount(client.valueTransactional, client.numAccount, 'CREDIT')"></i>
+                  </div>
+                </div>
+              </td>
+              <td class="pl-0">
+                <div class="flex pl-0 justify-content-end">
+                  <i class="pi pi-receipt cursorPointer" pTooltip="Visualizar Extrato" tooltipPosition="left" style="font-size: 30px;" (click)="viewExtract(client)"></i>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<p-dialog 
+  [header]="tituloExtract" 
+  [(visible)]="visibleExtract" 
+  [modal]="true" 
+  [resizable]="false"
+  [style]="{ width: '50rem', height: '100vh'}" 
+  position="right" 
+  [dismissableMask]="true"
+  [draggable]="false"
+>
+  <app-view-extract [dataClientAccount]="dataClientAccount" [dataExtract]="dataExtractClient"></app-view-extract>
+</p-dialog>
+<p-toast />

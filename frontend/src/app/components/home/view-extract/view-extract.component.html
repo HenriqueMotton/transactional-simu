@@ -1,0 +1,20 @@
+<div class="flex flex-column">
+  <span class="balanceInfo">
+    <p>Saldo em conta: {{ dataClientAccount.balance }} reais</p>
+  </span>
+  <p-divider />
+  <span class="title">Movimentações</span>
+  <div class="flex flex-column">
+    @if(dataExtract.length === 0){
+      <div class="col-12 pl-0">
+        Nenhuma movimentação feita.
+      </div>
+    }@else {
+      @for ( extract of dataExtract; track $index) {
+        <div class="col-12 pl-0">
+          <span [class]="extract.type === 'débito' ? 'colorExtractDebit' : 'colorExtractCredit'">- {{ extract.createdAt }} | Realizado {{ extract.type }} de {{ extract.value }} reais</span>
+        </div>
+      }
+    }
+  </div>
+</div>
