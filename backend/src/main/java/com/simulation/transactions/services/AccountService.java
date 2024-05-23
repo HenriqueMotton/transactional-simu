@@ -31,9 +31,9 @@ public class AccountService {
                 .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
 
         if (type == TransactionType.DEBIT) {
-            account.setBalance(account.getBalance().add(value));
-        } else if (type == TransactionType.CREDIT) {
             account.setBalance(account.getBalance().subtract(value));
+        } else if (type == TransactionType.CREDIT) {
+            account.setBalance(account.getBalance().add(value));
         }
 
         contaRepository.save(account);
