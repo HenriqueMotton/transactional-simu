@@ -70,6 +70,7 @@ export class RegisterClientComponent {
       console.log('Erro ao cadastrar usuário.');
     }finally{
       this.requestStatus = false;
+      this.formGroup.reset();
       this.statusModal.emit({status: false, result: 'success'});
     }
   }
