@@ -1,4 +1,4 @@
-Banco Posstgres -> Pode ser rodado em cima do docker-compose que encontra-se dentro do backend. Ou então subir uma instancia do postgres, somente alterando a configuração de acesso no property.
+Banco Postgres -> Pode ser rodado em cima do docker-compose que encontra-se dentro do backend. Ou então subir uma instancia do postgres, somente alterando a configuração de acesso no property.
 <br>
 <br>
 Backend Java Spring Boot -> Rodar normalmente com o Maven.
