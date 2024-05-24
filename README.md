@@ -5,3 +5,7 @@ Backend Java Spring Boot -> Rodar normalmente com o Maven.
 <br>
 <br>
 Frontend Angular 17 -> Comando no package, 'npm run start'.
+<br>
+<br>
+Se atentar as portas configuradas!
+
